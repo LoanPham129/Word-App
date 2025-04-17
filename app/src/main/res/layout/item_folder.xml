@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:elevation="4dp">
+
+    <LinearLayout
+        android:padding="16dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/txtFolderName"
+            android:layout_width="0dp"
+            android:layout_weight="0.85"
+            android:layout_height="wrap_content"
+            android:text="Chủ đề ABC"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/btnAddWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add"
+            android:contentDescription="Thêm từ"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

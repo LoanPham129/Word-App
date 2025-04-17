@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "226032925624",
+    "project_id": "wordapp-fc82f",
+    "storage_bucket": "wordapp-fc82f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226032925624:android:90940106929defd5402d4d",
+        "android_client_info": {
+          "package_name": "com.example.wordapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWzrL7tWdnrxi7oTixtxsp6fB1_xgvnR4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

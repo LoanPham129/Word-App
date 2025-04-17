@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:paddingTop="15dp"
+        android:background="@color/test"
+        app:title="Hi, username"
+        app:titleTextColor="@android:color/white"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <!-- Search bar -->
+    <EditText
+        android:id="@+id/edtSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tìm từ..."
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:padding="12dp"
+        android:background="@android:drawable/editbox_background"
+        android:layout_margin="12dp" />
+
+    <!-- Add folder button -->
+    <Button
+        android:id="@+id/btnAddFolder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="➕ Thêm chủ đề"
+        android:backgroundTint="@color/add"
+        android:textColor="@color/black"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- List of folders (as cards) -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerFolders"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp" />
+
+    <!-- Fancy Quiz Button -->
+    <Button
+        android:id="@+id/btnQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🚀 Bắt đầu Quiz kiểm tra từ"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/test"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:padding="12dp"
+        android:elevation="4dp" />
+
+    <!-- Exit button -->
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thoát"
+        android:layout_marginBottom="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/exit"
+        android:textColor="@android:color/white"
+        android:elevation="2dp"/>
+</LinearLayout>
