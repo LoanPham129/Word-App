@@ -28,5 +28,13 @@
             android:src="@drawable/ic_add"
             android:contentDescription="Thêm từ"
             android:background="?attr/selectableItemBackgroundBorderless" />
+        <ImageButton
+            android:id="@+id/btnDeleteFolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete"
+            android:contentDescription="Xoá thư mục"
+            android:background="@android:color/transparent"
+            android:padding="8dp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -40,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText edtSearch;
     private Button btnAddFolder, btnQuiz, btnLogout;
     private RecyclerView recyclerFolders;
-
     private List<Folders> folderList = new ArrayList<>();
     private FolderAdapter folderAdapter;
     private FirebaseAuth mAuth;
@@ -104,6 +105,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        edtSearch.setOnEditorActionListener((v, actionId, event) -> {
+            String keyword = edtSearch.getText().toString().trim();
+            if (!keyword.isEmpty()) {
+                searchWordAcrossFolders(keyword);
+            }
+            return true;
+        });
+
         btnAddFolder.setOnClickListener(v -> {
             EditText edtFolderName = new EditText(this);
             AlertDialog dialog = new AlertDialog.Builder(this)
@@ -152,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(v -> {
             new androidx.appcompat.app.AlertDialog.Builder(this)
                     .setTitle("Xác nhận")
-                    .setMessage("Bạn có chắc muốn thoát khỏi trò chơi?")
+                    .setMessage("Bạn có chắc muốn thoát khỏi ứng dụng?")
                     .setPositiveButton("Thoát", (dialog, which) -> {
                         mAuth.signOut();
                         startActivity(new Intent(this, Login.class));
@@ -162,21 +171,41 @@ public class MainActivity extends AppCompatActivity {
                     .show();
         });
     }
+    private void searchWordAcrossFolders(String keyword) {
+        DatabaseReference wordsRef = FirebaseDatabase.getInstance().getReference("words");
+        List<String> resultList = new ArrayList<>();
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu); // Thêm biểu tượng setting
-        return true;
+        wordsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot folderSnap : snapshot.getChildren()) {
+                    for (DataSnapshot wordSnap : folderSnap.getChildren()) {
+                        String word = wordSnap.child("word").getValue(String.class);
+                        String meaning = wordSnap.child("meaning").getValue(String.class);
+                        if (word != null && word.toLowerCase().contains(keyword.toLowerCase())) {
+                            resultList.add(word + " - " + meaning);
+                        }
+                    }
+                }
+
+                if (resultList.isEmpty()) {
+                    showSearchDialog("Không tìm thấy kết quả");
+                } else {
+                    showSearchDialog(android.text.TextUtils.join("\n\n", resultList));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Lỗi tìm kiếm", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.menu_settings) {
-            // Mở màn hình cài đặt
-            Toast.makeText(this, "Mở cài đặt", Toast.LENGTH_SHORT).show();
-            // startActivity(new Intent(this, SettingsActivity.class));
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    private void showSearchDialog(String content) {
+        new AlertDialog.Builder(this)
+                .setTitle("Kết quả tìm kiếm")
+                .setMessage(content)
+                .setPositiveButton("Đóng", null)
+                .show();
     }
 }
