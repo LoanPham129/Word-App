@@ -38,8 +38,6 @@
         android:layout_below="@id/headerLayout"
         android:layout_above="@+id/card_add_word"
         android:padding="8dp" />
-
-
     <!-- Form thêm từ: ẨN MẶC ĐỊNH -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_add_word"

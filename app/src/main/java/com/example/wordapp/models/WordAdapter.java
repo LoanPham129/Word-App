@@ -20,7 +20,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder> {
-
     private Context context;
     private List<Word> wordList;
     private String folderId;
@@ -30,15 +29,12 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
         this.wordList = wordList;
         this.editWordListener = listener;
     }
-
     public void setFolderId(String folderId) {
         this.folderId = folderId;
     }
-
     public interface OnEditWordListener {
         void onEditWord(Word word);
     }
-
 
     @NonNull
     @Override
@@ -81,25 +77,20 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
                     .show();
         });
 
-
         // Xử lý nút sửa
         holder.btnEdit.setOnClickListener(v -> {
             if (editWordListener != null) {
                 editWordListener.onEditWord(word);
             }
         });
-
     }
-
     @Override
     public int getItemCount() {
         return wordList.size();
     }
-
     public static class WordViewHolder extends RecyclerView.ViewHolder {
         TextView tvWord, tvType, tvMeaning;
         ImageButton btnEdit, btnDelete;
-
         public WordViewHolder(@NonNull View itemView) {
             super(itemView);
             tvWord = itemView.findViewById(R.id.tvWord);

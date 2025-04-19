@@ -109,10 +109,6 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderView
                                     notifyItemRemoved(holder.getAdapterPosition());
                                     Toast.makeText(context, "Đã xoá chủ đề", Toast.LENGTH_SHORT).show();
                                 });
-
-                        // Cũng xoá cả liên kết trong users nếu cần:
-                        // FirebaseDatabase.getInstance().getReference("users")
-                        //     .child(currentUserId).child("folders").child(folder.getId()).removeValue();
                     })
                     .setNegativeButton("Hủy", null)
                     .show();
@@ -123,11 +119,9 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderView
     public int getItemCount() {
         return folderList.size();
     }
-
     public static class FolderViewHolder extends RecyclerView.ViewHolder {
         TextView txtFolderName;
         ImageButton btnAddWord, btnDeleteFolder;
-
         public FolderViewHolder(@NonNull View itemView) {
             super(itemView);
             txtFolderName = itemView.findViewById(R.id.txtFolderName);

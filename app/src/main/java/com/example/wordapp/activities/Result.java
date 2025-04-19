@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.wordapp.R;
 
 public class Result extends AppCompatActivity {
-
     private TextView tvResult;
     private Button btnRetry, btnExit;
 

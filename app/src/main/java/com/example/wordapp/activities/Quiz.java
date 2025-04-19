@@ -13,12 +13,10 @@ import com.google.firebase.database.*;
 import java.util.*;
 
 public class Quiz extends AppCompatActivity {
-
     private TextView tvQuestion;
     private RadioGroup answerGroup;
     private RadioButton[] options = new RadioButton[4];
     private Button btnSubmit;
-
     private List<Word> allWords = new ArrayList<>();
     private Word correctAnswer;
     private int questionIndex = 0, score = 0;
@@ -79,13 +77,11 @@ public class Quiz extends AppCompatActivity {
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     folderIds.add(snap.getKey());
                 }
-
                 if (folderIds.isEmpty()) {
                     Toast.makeText(Quiz.this, "Bạn chưa có từ vựng nào!", Toast.LENGTH_SHORT).show();
                     finish();
                     return;
                 }
-
                 int[] loadedFolders = {0}; // Dùng mảng để mutable
                 int totalFolders = folderIds.size();
 
@@ -100,7 +96,6 @@ public class Quiz extends AppCompatActivity {
                                             allWords.add(word);
                                         }
                                     }
-
                                     loadedFolders[0]++;
                                     if (loadedFolders[0] == totalFolders) {
                                         // Khi đã tải xong tất cả folder
@@ -145,7 +140,6 @@ public class Quiz extends AppCompatActivity {
                 optionsList.add(w.meaning);
             }
         }
-
         Collections.shuffle(optionsList);
         for (int i = 0; i < 4; i++) {
             options[i].setText(optionsList.get(i));

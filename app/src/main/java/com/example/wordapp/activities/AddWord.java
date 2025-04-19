@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddWord extends AppCompatActivity {
-
     private EditText edtWord, edtType, edtMeaning;
     private Button btnAdd, btnCancel;
     private RecyclerView recyclerWords;
@@ -97,7 +96,6 @@ public class AddWord extends AppCompatActivity {
                 Toast.makeText(this, "Vui lòng nhập đầy đủ từ và nghĩa", Toast.LENGTH_SHORT).show();
                 return;
             }
-
             Object tag = btnAdd.getTag();
             if (tag != null) {
                 // Chế độ sửa
@@ -137,7 +135,6 @@ public class AddWord extends AppCompatActivity {
                 }
                 wordAdapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(DatabaseError error) {
                 Toast.makeText(AddWord.this, "Lỗi tải dữ liệu", Toast.LENGTH_SHORT).show();

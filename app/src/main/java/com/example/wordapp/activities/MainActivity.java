@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         foldersRef = FirebaseDatabase.getInstance().getReference("folders");
-
         foldersRef.orderByChild("owner").equalTo(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -98,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 folderAdapter.notifyDataSetChanged(); // cập nhật giao diện
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(MainActivity.this, "Lỗi khi tải dữ liệu", Toast.LENGTH_SHORT).show();
@@ -136,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
                                 folderAdapter.notifyItemInserted(folderList.size() - 1);
                                 Toast.makeText(this, "Đã thêm chủ đề", Toast.LENGTH_SHORT).show();
                             });
-
                             // Lưu folderId vào user
                             usersRef.child(uid).child("folders").child(folderId).setValue(true);
 
@@ -187,14 +184,12 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-
                 if (resultList.isEmpty()) {
                     showSearchDialog("Không tìm thấy kết quả");
                 } else {
                     showSearchDialog(android.text.TextUtils.join("\n\n", resultList));
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(MainActivity.this, "Lỗi tìm kiếm", Toast.LENGTH_SHORT).show();
